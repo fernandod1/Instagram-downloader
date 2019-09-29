@@ -1,4 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.5
+
+# Copyright (c) 2019 Fernando
+# Url: https://github.com/dlfernando/
+# License: MIT
 
 import sys
 import requests
@@ -28,6 +32,7 @@ def remove_temp_file():
 
 
 def download_photos(instagram_username,user_id,nextpagcode,pag):
+    filename = instagram_username
     url = "https://gramsave.com/media"
     data = {"username": instagram_username, "userid": user_id, "page": nextpagcode}
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
@@ -39,12 +44,11 @@ def download_photos(instagram_username,user_id,nextpagcode,pag):
             filename = instagram_username + "/" + str(pag) + "_" + str(i) + ".mp4"
         else:
             filename = instagram_username + "/" + str(pag) + "_" + str(i) + ".jpg"
-
-        try:
-            urllib.request.urlretrieve(match["download_src"], filename)
-        except urllib.error.HTTPError as e:
-            print(str(e.code) + " Can't download file")
-
+            try:
+                urllib.request.urlretrieve(match["download_src"], filename)
+            except urllib.error.HTTPError as e:
+                print(str(e.code) + " Can't download file")
+                
         i = i + 1
     return r.json()["next_page"]
 
@@ -74,6 +78,12 @@ try:
         nexttoken = lines[1]
 except FileNotFoundError:
     print("resume.txt temporary file created.")
+
+print("--->" + instagram_username + "<---")
+print("--->" + str(user_id) + "<---")
+print("--->" + nexttoken + "<---")
+print("--->" + str(pag) + "<---")
+
 
 while pag<totalpages:
     nexttoken = download_photos(instagram_username, user_id, nexttoken, pag)
