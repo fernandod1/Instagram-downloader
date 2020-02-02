@@ -10,6 +10,10 @@ import time
 import urllib.request
 import os
 
+# Set public instagram username you want to download photos from (Example: ladygaga):
+instagram_username = "SET_INSTAGRAM_USERNAME"
+
+
 def get_user_id(html):
     return html.json()["graphql"]["user"]["id"]
 
@@ -52,47 +56,40 @@ def download_photos(instagram_username,user_id,nextpagcode,pag):
         i = i + 1
     return r.json()["next_page"]
 
-if len(sys.argv)==2:
-    instagram_username = str(sys.argv[1])
-else:
-    instagram_username = "REPLACE_WITH_ANY_INSTRAGRAM_USERNAME"
+# --------------------------------- Main program -------------------------------------#
 
+def main():
+    global instagram_username
+    create_download_directory(instagram_username)
+    html = requests.get("https://www.instagram.com/" + instagram_username + "/?__a=1")
+    nexttoken = ""
+    pag = 0
+    totalpages=int(get_total_photos(html)/13)
+    if totalpages==0:
+        totalpages=1
+    user_id=int(get_user_id(html))
+    try:
+        with open("resume.txt") as f_obj:
+            lines = f_obj.readlines()
+            pag = int(lines[0])
+            nexttoken = lines[1]
+    except FileNotFoundError:
+        print("resume.txt temporary file created.")
+    print("--->" + instagram_username + "<---")
+    print("--->" + str(user_id) + "<---")
+    print("--->" + nexttoken + "<---")
+    print("--->" + str(pag) + "<---")
+    while pag<totalpages:
+        nexttoken = download_photos(instagram_username, user_id, nexttoken, pag)
+        print("******* PAGE " + str(pag) + " DONE *******")
+        pag=pag+1
+        file1 = open("resume.txt", "w")   # create file with last page done to resume if needed
+        file1.write(str(pag) + "\n" + str(nexttoken))
+        file1.close()
+        time.sleep(0.5)
+    remove_temp_file()
+    print("DONE. All images and videos downloaded to /" + instagram_username + "/ folder.")
 
-create_download_directory(instagram_username)
+if __name__ == "__main__":
 
-
-
-html = requests.get("https://www.instagram.com/" + instagram_username + "/?__a=1")
-
-nexttoken = ""
-pag = 0
-totalpages=int(get_total_photos(html)/13)
-if totalpages==0:
-    totalpages=1
-user_id=int(get_user_id(html))
-
-try:
-    with open("resume.txt") as f_obj:
-        lines = f_obj.readlines()
-        pag = int(lines[0])
-        nexttoken = lines[1]
-except FileNotFoundError:
-    print("resume.txt temporary file created.")
-
-print("--->" + instagram_username + "<---")
-print("--->" + str(user_id) + "<---")
-print("--->" + nexttoken + "<---")
-print("--->" + str(pag) + "<---")
-
-
-while pag<totalpages:
-    nexttoken = download_photos(instagram_username, user_id, nexttoken, pag)
-    print("******* PAGE " + str(pag) + " DONE *******")
-    pag=pag+1
-    file1 = open("resume.txt", "w")   # create file with last page done to resume if needed
-    file1.write(str(pag) + "\n" + str(nexttoken))
-    file1.close()
-    time.sleep(0.5)
-
-remove_temp_file()
-print("DONE. All images and videos downloaded to /" + instagram_username + "/ folder.")
+    main()

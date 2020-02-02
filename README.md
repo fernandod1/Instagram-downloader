@@ -5,7 +5,7 @@ Requirement: Python v3
 
 USAGE COMMAND:
 
-python instagram_downloader.py INSTAGRAM_USERNAME
+python instagram_downloader.py
 
 DISCLAIMER:
 
