@@ -3,6 +3,11 @@ Instagram user's photos and videos downloader. Download all media files from any
 
 Requirement: Python v3
 
+CONFIGURE:
+
+Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
+instagram_username = "SET_INSTAGRAM_USERNAME"
+
 USAGE COMMAND:
 
 python instagram_downloader.py
