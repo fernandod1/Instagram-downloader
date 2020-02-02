@@ -1,5 +1,5 @@
-# Instagram-downloader
-Instagram user's photos and videos downloader. Download all media files from any username. Working 2019.
+# Instagram downloader
+Instagram user's photos and videos downloader. Download all media files from any username. Working 2020.
 
 Requirement: Python v3
 
