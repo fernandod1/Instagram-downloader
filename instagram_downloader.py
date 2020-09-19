@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 
 # Copyright (c) 2019 Fernando
 # Url: https://github.com/dlfernando/
@@ -71,8 +71,12 @@ def main():
     try:
         with open("resume.txt") as f_obj:
             lines = f_obj.readlines()
-            pag = int(lines[0])
-            nexttoken = lines[1]
+            for c in range(0, len(lines)):
+                if f_obj in lines[c]:
+                   f_obj.append(lines[c])
+               #pag = int(lines[0])
+            #nexttoken = lines[1]
+            #pag.append(lines[int])
     except FileNotFoundError:
         print("resume.txt temporary file created.")
     print("--->" + instagram_username + "<---")
