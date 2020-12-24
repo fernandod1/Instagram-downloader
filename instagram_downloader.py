@@ -11,7 +11,7 @@ import urllib.request
 import os
 import json
 
-INSTAGRAM_USERNAME = "magdapalimariu"
+INSTAGRAM_USERNAME = "ladygaga"
 
 # ------------------------------Do not modify under this line--------------------------------------- #
 
