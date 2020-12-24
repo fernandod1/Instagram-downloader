@@ -3,10 +3,10 @@ Instagram user's photos and videos downloader. Download all media files from any
 
 LIMITS: 
 
-Script does not requires a token or username/pass to use Instagram API, but this causes some daily limits:
+Script does not requires a token or username/pass to use Instagram API, this causes some daily limits:
 
 - Script has been tested in single execution and downloads around 2200 images/videos.
-- Instagram API limits daily queries, so if script reach limit, I recommend you to execute again script in 12 hours.
+- Instagram API limits daily queries, so if script reachs limit, I recommend you to execute script again in 12 hours so that daily limit is expired.
 - I have added a resume mode so that you can execute again script and it will continue from last image downladed.
 
 Requirement: Python v3
