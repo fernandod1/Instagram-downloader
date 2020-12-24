@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Fernando
-# Url: https://github.com/dlfernando/
+# Copyright (c) 2021 Fernando
+# Url: https://github.com/fernandod1/
 # License: MIT
 
 import sys
@@ -9,91 +9,132 @@ import requests
 import time
 import urllib.request
 import os
+import json
 
-# Set public instagram username you want to download photos from (Example: ladygaga):
-instagram_username = "SET_INSTAGRAM_USERNAME"
+INSTAGRAM_USERNAME = "ladygaga"
 
+# ------------------------------Do not modify under this line--------------------------------------- #
 
-def get_user_id(html):
-    return html.json()["graphql"]["user"]["id"]
+class Instagram_Downloader:
+    def __init__(self, username):
+        self.username = username
+        self.user_id = ""
+        self.jsondata = ""
+        self.apilabel = "graphql"
+        self.hash_timeline = ""
 
-def get_total_photos(html):
-    return int(html.json()["graphql"]["user"]["edge_owner_to_timeline_media"]["count"])
+    def create_download_directory(self):
+        try:
+            os.mkdir(self.username)
+            print("Directory ", self.username, " created.")
+        except FileExistsError:
+            print("Directory ", self.username, " already exists.")
 
-def create_download_directory(instagram_username):
-    try:
-        os.mkdir(instagram_username)
-        print("Directory ", instagram_username, " Created ")
-    except FileExistsError:
-        print("Directory ", instagram_username, " already exists")
+    def get_total_photos(self):
+        return int((self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["count"])) 
 
-def remove_temp_file():
-    ## Try to delete resume.txt file when all content downloaded ##
-    try:
-        os.remove("resume.txt")
-    except OSError as e:
-        print("Error: %s - %s." % (e.filename, e.strerror))
+    def set_user_id(self):
+        self.user_id = int(self.jsondata.json()[self.apilabel]["user"]["id"])
 
+    def get_end_cursor_timeline_media(self):
+        return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["end_cursor"]
+    
+    def write_resume_end_cursor_timeline_media(self):
+        f = open("resume_"+self.username+".txt", "w")   # create file with last page downladed to resume if needed
+        f.write(str(self.get_end_cursor_timeline_media()))
+        f.close()
 
-def download_photos(instagram_username,user_id,nextpagcode,pag):
-    filename = instagram_username
-    url = "https://gramsave.com/media"
-    data = {"username": instagram_username, "userid": user_id, "page": nextpagcode}
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    r = requests.post(url, json=data, headers=headers)
-    i = 0
-    for match in r.json()["media"]:
-        print(match["download_src"])
-        if 'mp4' in match["download_src"]:
-            filename = instagram_username + "/" + str(pag) + "_" + str(i) + ".mp4"
+    def read_resume_end_cursor_timeline_media(self):
+        if os.path.isfile("resume_"+self.username+".txt"):
+            with open("resume_"+self.username+".txt") as f:
+                self.hash_timeline = f.readline().strip()
+                print ("****************\nResume mode ON\n****************")
+                return True
         else:
-            filename = instagram_username + "/" + str(pag) + "_" + str(i) + ".jpg"
+            print ("Not resume pending")
+            return False
+    
+    def remove_resume_file(self):
+        if os.path.exists("resume_"+self.username+".txt"):
+            os.remove("resume_"+self.username+".txt")
+
+    def set_apilabel(self,label):
+        self.apilabel = label
+    
+    def has_next_page(self):
+        return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["has_next_page"]
+
+    def get_jsondata_instagram(self):
+        headers = {
+            "Host": "www.instagram.com",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
+        }
+        if self.apilabel=="graphql":
+            self.jsondata = requests.get("https://www.instagram.com/" + self.username + "/feed/?__a=1", headers=headers)  
+            self.hash_timeline = self.get_end_cursor_timeline_media()
+            self.set_user_id()   
+        else:
+            self.jsondata = requests.get("https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D", headers=headers)
+            if user.has_next_page():
+                self.hash_timeline = self.get_end_cursor_timeline_media()
+        if (self.jsondata.status_code==200):
+            print("----------------\nJson url loaded:\n----------------\nhttps://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D")
+        else:
+            print("ERROR: Incorrect json data url recieved.")
+        return self.jsondata
+
+    def download_photos(self):
+        i = 0 
+        for match in self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["edges"]: 
+            time.sleep(0.5) 
+            print("Downloading IMAGE:\n" +match["node"]["display_url"])
+            filename = self.username + "/" + self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["edges"][i]["node"]["shortcode"] + ".jpg"
             try:
-                urllib.request.urlretrieve(match["download_src"], filename)
+                if not os.path.exists(filename ):
+                    urllib.request.urlretrieve(match["node"]["display_url"], filename)
+                else:
+                    print("Notice: "+ filename+ " image already downloaded, skipped.")
             except urllib.error.HTTPError as e:
-                print(str(e.code) + " Can't download file")
-                
-        i = i + 1
-    return r.json()["next_page"]
+                print(str(e.code) + " Can't download image")
+            i = i + 1
+
+    def download_videos(self):
+        i = 0 
+        if 'edge_felix_video_timeline' in self.jsondata.json()[self.apilabel]["user"]:
+            for match in self.jsondata.json()[self.apilabel]["user"]["edge_felix_video_timeline"]["edges"]: 
+                time.sleep(0.5) 
+                print("Downloading VIDEO:\n" +match["node"]["video_url"])
+                filename = self.username + "/" + self.jsondata.json()[self.apilabel]["user"]["edge_felix_video_timeline"]["edges"][i]["node"]["shortcode"] + ".mp4"
+                try:
+                    if not os.path.exists(filename ):
+                        urllib.request.urlretrieve(match["node"]["video_url"], filename)
+                    else:
+                        print("Notice: "+ filename+ " video already downloaded, skipped.")
+                except urllib.error.HTTPError as e:
+                    print(str(e.code) + " Can't download video")
+                i = i + 1
+ 
 
 # --------------------------------- Main program -------------------------------------#
 
-def main():
-    global instagram_username
-    create_download_directory(instagram_username)
-    html = requests.get("https://www.instagram.com/" + instagram_username + "/?__a=1")
-    nexttoken = ""
-    pag = 0
-    totalpages=int(get_total_photos(html)/13)
-    if totalpages==0:
-        totalpages=1
-    user_id=int(get_user_id(html))
-    try:
-        with open("resume.txt") as f_obj:
-            lines = f_obj.readlines()
-            for c in range(0, len(lines)):
-                if f_obj in lines[c]:
-                   f_obj.append(lines[c])
-               #pag = int(lines[0])
-            #nexttoken = lines[1]
-            #pag.append(lines[int])
-    except FileNotFoundError:
-        print("resume.txt temporary file created.")
-    print("--->" + instagram_username + "<---")
-    print("--->" + str(user_id) + "<---")
-    print("--->" + nexttoken + "<---")
-    print("--->" + str(pag) + "<---")
-    while pag<totalpages:
-        nexttoken = download_photos(instagram_username, user_id, nexttoken, pag)
-        print("******* PAGE " + str(pag) + " DONE *******")
-        pag=pag+1
-        file1 = open("resume.txt", "w")   # create file with last page done to resume if needed
-        file1.write(str(pag) + "\n" + str(nexttoken))
-        file1.close()
-        time.sleep(0.5)
-    remove_temp_file()
-    print("DONE. All images and videos downloaded to /" + instagram_username + "/ folder.")
-
-if __name__ == "__main__":
-
-    main()
+try:
+    user = Instagram_Downloader(INSTAGRAM_USERNAME)
+    user.create_download_directory()
+    user.get_jsondata_instagram()
+    user.download_photos()
+    user.download_videos()
+    user.set_apilabel("data")
+    user.read_resume_end_cursor_timeline_media()
+    while True:
+        time.sleep(5) # pause to avoid ban
+        user.get_jsondata_instagram()
+        user.download_photos()
+        user.download_videos()
+        user.write_resume_end_cursor_timeline_media()
+        if user.has_next_page() == False:
+            user.remove_resume_file()
+            print("Done. All images/videos downloaded for "+INSTAGRAM_USERNAME+" account.")
+            break
+except:
+    print("Notice: script premature finished due to daily limit of number of requests to Instagram API.")
+    print("Just execute script AGAIN in few hours to continue RESUME of pending images/videos to download.")

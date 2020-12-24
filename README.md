@@ -1,12 +1,20 @@
 # Instagram downloader
-Instagram user's photos and videos downloader. Download all media files from any username. Working 2020.
+Instagram user's photos and videos downloader. Download all media files from any public username. Working 2021.
+
+LIMITS: 
+
+Script does not require a token or username/pass to use Instagram API, but this causes some daily limits:
+
+- Script has been tested in single execution and downloads around 2200 images/videos.
+- Instagram API limits daily queries, so if script reach limit, I recommend you to execute again script in 12 hours.
+- I have added a resume mode so that you can execute again script and it will continue from last image downladed.
 
 Requirement: Python v3
 
 CONFIGURE:
 
 Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
-instagram_username = "SET_INSTAGRAM_USERNAME"
+INSTAGRAM_USERNAME = "SET_INSTAGRAM_USERNAME"
 
 USAGE COMMAND:
 
@@ -18,5 +26,5 @@ DISCLAIMER:
 
 COLLABORATIONS:
 
-Collaborations to improve this script are always webcome :)
+Collaborations to improve this script are always webcome.
 
