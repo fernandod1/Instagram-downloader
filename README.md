@@ -1,6 +1,16 @@
 # Instagram downloader
 Instagram user's photos and videos downloader. Download all media files from any public username. Working 2021.
 
+# I've forked this one from the original developer and am working on some extras.
+# # Goals:
+# Version with Banner and menu
+# Create a color coded menu with progress printed to the screen. 
+# Ability to select the directory for the new user file: os.chdir ??,  etc..
+# Offer the ability to download more than just one Instagrammer at a time.
+# Import the threading module & create def queueRequests():  
+# Or use asyncio or other concurrency? Caveat: This could conflict with Instaagram's API and result in being temporaraly blocked.
+# Regardless, the current instagram_downloader.py  works very well.
+
 LIMITS: 
 
 Script does not requires a token or username/pass to use Instagram API, this causes some daily limits:
