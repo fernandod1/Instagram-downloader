@@ -15,14 +15,14 @@
 # create a separate module , (menu.py) to be imported??
 # What adjstments to the class, ( or more classes?), attributes and functions will be needed?
 # Ultimately how to run the program? ie: Calling the classes, functions etc..
-
-import sys
-import requests
-import time
-import urllib.request
 import os
+import sys
+import time
 import json
-import pyfiglet
+import requests
+import argparse
+import urllib.request
+from lib.colorama import Fore, Style
 
 # INSTAGRAM_USERNAME = " "
 host = "instagram.com"
