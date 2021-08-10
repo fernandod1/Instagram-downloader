@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 
-# Version with Banner and menue is under construction
+
+# # Version with Banner and menu
+# --- UNDER CONSTRUCTION ----
+
+# Goals:
+# Create a color coded menue and output, this will Give the user the ability, to select the directory for the new user file.
+# os.chdir ?? etc..
+# Offer the ability to download more than just one Instagrammer at a time.
+# import threading module & create def queueRequests():  
+# or use asyncio or other concurrency? could conflict with API calls and result in being blocked
+# How to call the class and functions to run it the program ??
 
 import sys
 import requests
