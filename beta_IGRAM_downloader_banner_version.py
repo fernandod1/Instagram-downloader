@@ -5,7 +5,7 @@
 # --- UNDER CONSTRUCTION ----
 
 # Goals:
-# Ctreate custom color banner- DONE!
+# Create custom color banner- DONE!
 # Create a color coded menue and output, this will Give the user the ability, to select the directory for the new user file.
 # os.chdir ?? etc..
 # Offer the ability to download more than just one Instagrammer at a time.
