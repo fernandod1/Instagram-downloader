@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 
 
-# # Version with Banner and menu
+#  Version with Banner and menu
 # --- UNDER CONSTRUCTION ----
 
 # Goals:
+# Ctreate custom color banner- DONE!
 # Create a color coded menue and output, this will Give the user the ability, to select the directory for the new user file.
 # os.chdir ?? etc..
 # Offer the ability to download more than just one Instagrammer at a time.
 # import threading module & create def queueRequests():  
 # or use asyncio or other concurrency? could conflict with API calls and result in being blocked
-# How to call the class and functions to run it the program ??
+# How to call the class and functions to run the program ??
+# create a separate module , (menu.py) to be imported??
+# What adjstments to the class, ( or more classes?), attributes and functions will be needed?
+# Ultimately how to run the program? ie: Calling the classes, functions etc..
 
 import sys
 import requests
