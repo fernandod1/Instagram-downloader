@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-
 #  Version with Banner and menu
 # --- UNDER CONSTRUCTION ----
-
 # Goals:
 # Create custom color banner- DONE!
 # Create a color coded menue and output, this will Give the user the ability, to select the directory for the new user file.
@@ -15,6 +13,7 @@
 # create a separate module , (menu.py) to be imported??
 # What adjstments to the class, ( or more classes?), attributes and functions will be needed?
 # Ultimately how to run the program? ie: Calling the classes, functions etc..
+# Much of this code was inspired by James Kettle's HTTP Request Smuggling Python code. Thus the similarities. 
 import os
 import sys
 import time
@@ -24,11 +23,12 @@ import argparse
 import urllib.request
 from lib.colorama import Fore, Style
 
-# INSTAGRAM_USERNAME = " "
+INSTAGRAM_USERNAME = "theproperpeople "
 host = "instagram.com"
-#username = input("Type the Instagram user to download: ")
+
 #--------------------------------------------------------------------------------------#
 
+# Original class
 # class Instagram_Downloader:
 #     def __init__(self, username):
 #         self.username = username
@@ -37,7 +37,7 @@ host = "instagram.com"
 #         self.apilabel = "graphql"
 #         self.hash_timeline = ""
 
-
+# New class, (experimental)
 class Instagram_Downloader:
 	def __init__(self, smhost, username="", smargs=None):
 		self._host = smhost
@@ -131,18 +131,13 @@ def banner(sm_version):
     print(CF(r"| |     | |  | |   | |  | |   | |    | |  |  _ \   | |      | |  | |    / / \ \     | |     | |  |  ___|     | |   \ \       "))
     print(CF(r"| |     | |  | |   | |  | |   | |    | |  | | \ \  | |      | |  | |   / /___\ \    | |     | |  | |         | |    \ \      "))
     print(CF(r"| |     | |  | |   | |  | |   | |    | |  | |  \ \ | |      | |  | |  / ______  \   | |     | |  | |     _   | |     \ \     "))                                                                                 "))
-    print(CF(r"| |____/  /  | |___| |  | \__/ / \ __/ |  | |   \ \|  \_____\  \/ /  / /       \ \__| |____ / /__| |____| |__| |      \ \    "))
+    print(CF(r"| |____/  /  | |___| |  | \__/ /\ __/  |  | |   \ \|  \_____\  \/ /  / /       \ \__| |____ / /__| |____| |__| |      \ \    "))
     print(CF(r"|________/   \_______/  \ ____/   \____/  |_|    \_______________/  /_/         \______________________________/       \_\   "))                                                                "))
     print(CF(r"                                                                                                                             "))
     print(CF(r"                                                                                                                             "))
     print(CF(r""))
-    print(CF(r"     @defparam                                                                                                    %s"%(sm_version)))
+    print(CF(r"     LinuxUser255                                                                                                    %s"%(sm_version)))
     print(CF(Style.RESET_ALL))
-
-
-
-
-
 
 
 
@@ -162,19 +157,21 @@ if __name__ == "__main__":
 		print("Error: Instagram Downloader requires Python 3.x")
 		sys.exit(1)
 
-# Offer the ability to select more than just one Instagram User
 
+# Goal: Offer the ability to select more than just one Instagram User
+# use, for now: 
+# ./beta.py -u https://instagram.com
 Parser = argparse.ArgumentParser()
-#Parser.add_argument('-h', '--help', help="help menu:")
-Parser.add_argument('-u', '--Instagram Username(s)', help="Target Instgram Username(s)")
-#Parser.add_argument('-v', '--vhost', default="", help="Specify a virtual host")
-#Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
-#Parser.add_argument('-m', '--method', default="POST", help="HTTP method to use (e.g GET, POST) Default: POST")
-#Parser.add_argument('-l', '--log', help="Specify a log file")
+Parser.add_argument('-u', '--url', help="Target URL")
+Parser.add_argument('-n', '--Instagram Username(s)', help="Target Instgram Username(s)")
+Parser.add_argument('-v', '--vhost', default="", help="Specify a virtual host")
+Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
+Parser.add_argument('-m', '--method', default="POST", help="HTTP method to use (e.g GET, POST) Default: POST")
+Parser.add_argument('-l', '--log', help="Specify a log file")
 Parser.add_argument('-q', '--quiet', action='store_true', help="Quiet mode will only log issues found")
 Parser.add_argument('-t', '--timeout', default=5.0, help="Socket timeout value Default: 5")
 Parser.add_argument('--no-color', action='store_true', help="Suppress color codes")
-#Parser.add_argument('-c', '--configfile', default="default.py", help="Filepath to the configuration file of payloads")
+Parser.add_argument('-c', '--configfile', default="default.py", help="Filepath to the configuration file of payloads")
 Args = Parser.parse_args()  # returns data from the options specified (echo
 
 NOCOLOR = Args.no_color
@@ -187,7 +184,7 @@ banner(Version)
 if sys.version_info < (3, 0):
 		print_info("Error: Instagram Downloader requires Python 3.x")
 		sys.exit(1)
-
+ # This is all experimental, code can run with some of this uncommented
 	# If the Username argument is not specified then check stdin
 #if Args.username is None:
 #        if sys.stdin.isatty():
