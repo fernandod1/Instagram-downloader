@@ -4,13 +4,15 @@
 # --- UNDER CONSTRUCTION ----
 # Goals:
 # Create custom color banner- DONE!
-# Create a color coded menue and output, this will Give the user the ability, to select the directory for the new user file.
-# os.chdir ?? etc..
-# Offer the ability to download more than just one Instagrammer at a time.
-# import threading module & create def queueRequests():  
+# Get menue output working, 
+# Munu/selection items: 
+# Give the user the ability to select the directory for the new user file.
+# Offer option to scrape more than one profile at a time
+# For the directory option: use os.chdir ?? etc...
+# For more than one one user per run: import threading module & create def queueRequests():  
 # or use asyncio or other concurrency? could conflict with API calls and result in being blocked
 # How to call the class and functions to run the program ??
-# create a separate module , (menu.py) to be imported??
+# ?? create a separate module , (menu.py) to be imported??
 # What adjstments to the class, ( or more classes?), attributes and functions will be needed?
 # Ultimately how to run the program? ie: Calling the classes, functions etc..
 # Much of this code was inspired by James Kettle's HTTP Request Smuggling Python code. Thus the similarities. 
