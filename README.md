@@ -8,7 +8,7 @@ Instagram user's photos and videos downloader. Download all media files from any
 # Ability to select the directory for the new user file: os.chdir ??,  etc..
 # Offer the ability to download more than just one Instagrammer at a time.
 # Import the threading module & create def queueRequests():  
-# Or use asyncio or other concurrency? Caveat: This could conflict with Instaagram's API and result in being temporaraly blocked.
+# Or use asyncio or other concurrency? Caveat: This could conflict with Instagram's API and result in being temporaraly blocked.
 # Regardless, the current instagram_downloader.py  works very well.
 
 LIMITS: 
