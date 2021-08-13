@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Much of this code was inspired by James Kettle's HTTP Request Smuggling Python tool/code.
 import argparse
 import re
 import time
@@ -22,18 +23,22 @@ from lib.colorama import Fore, Style
 # DONE! Create custom color banner- DONE!
 # DONE! Create a menu tailored to this scraper,
 # DONE! enter username prompt
+# Make the code more redable
+# Follow The Zen of Python guidelines
 # !! Fix INDENTATION !!
-# Will I need to add another class? and or functions? (if threading then yes)
+
+# Thoughts, Ideas...
+# Maybe in lieu of messing with json and all the extra code & getting locked out maybe..
+# Create a login credential module and import that? Use a sock account/dummy account..whatever you wanna call it.
+# For OSINT purposes, Add a a Metadata exfiltration feature, (linux cmd line tools out there for that and Python scripts) could make them modules and import them.
 # Is it possible to proxy individual requests/downloads through diffent servers to prevent IP ban?
-# Offer the ability to download more than just one Instagrammer at a time. (need proxies)
+# Offer the ability to download more than just one Instagrammer at a time. (need proxies?)
 # ?? import threading module & create def queueRequests(): 
-# or use asyncio or other concurrency? could conflict with API calls and result in being blocked
-# How to call the class and functions to run the program ??
-# create a separate module , (menu.py) to be imported??
-# Probably need to use the sleep() function time.sleep(5)  # pause to avoid ban
-# What adjstments to the class, ( or more classes?), attributes and functions will be needed?
-# Ultimately how to run the program? ie: Calling the classes, functions etc..
-# Much of this code was inspired by James Kettle's HTTP Request Smuggling Python code. Thus the similarities.
+# Or, use asyncio or a different concurrency option? could conflict with API calls and result in being blocked
+# How to succienctly call the classe(s) and functions to run the program ??
+# ?? Any sepearate modules needed for importation?
+# Probably need to up the sleep() function to 1 second time.sleep(1.00)  # pause to avoid ban
+# Ultimately how to run the program? ie: Calling the classes, functions etc, a simple oneliner? or multiple lines calling each function sepearately?
 # Fix indentation and clean up the code & remember.. 
 
 # -------The ZEN of PYTHON-------
@@ -53,22 +58,19 @@ from lib.colorama import Fore, Style
 # If the implementation is hard to explain, it's a bad idea.
 # If the implementation is easy to explain, it may be a good idea.
 # Namespaces are one honking great idea -- let's do more of those!
+#---------------------------------
 
+# anything to do different here with these variables?
+# smhost is a throwbackto Kettle's smuggler.py , but as of now, the code needs both host & smhost, with the same URL value to run.
+# IDK. ¯\_(ツ)_/¯
+# Contrubuters feel free to analyze and suggest of that one.
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 # --------------------------------------------------------------------------------------#
 
-# class Instagram_Downloader:
-#     def __init__(self, username):
-#         self.username = username
-#         self.user_id = ""
-#         self.jsondata = ""
-#         self.apilabel = "graphql"
-#         self.hash_timeline = ""
-
 # This indentation is..Ughhh, fix it Chris.
 class Instagram_Downloader():
-		'''SMUGGLER attributes for REFERENCE'''
+		'''Some of James Kettle's smuggler.py attributes for REFERENCE'''
 
 		def __init__(self, smhost, username=""):
 				self._host = smhost
@@ -135,7 +137,7 @@ class Instagram_Downloader():
 							"https://www.instagram.com/" + self.username + "/feed/?__a=1", headers=headers)
 					self.hash_timeline = self.get_end_cursor_timeline_media()
 					self.set_user_id()
-				else:
+				else:   # All this could be easily cleaned up & possibly eliminated by using a dummy account & login, like with the emailbomber.py
 					self.jsondata = requests.get("https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(
 							self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D", headers=headers)
 					if user.has_next_page():
@@ -211,7 +213,7 @@ if __name__ == "__main__":
 		sys.exit(1)
 
 # Goal: Offer the ability to select more than just one Instagram User
-# Redo-EDIT this menue for its puposes.
+# Redo-EDIT this menu for that pupose.
 Parser = argparse.ArgumentParser()
 Parser.add_argument('-u', '--user', help="INSTAGRAM_USERNAME")
 Parser.add_argument('-x', '--exit_early', action='store_true',
@@ -235,7 +237,7 @@ sm.run()
 
 
 # Original way of calling/executing Instagram Downloader script
-
+# Keep this, possible need it as code progesses, maybe need to stich it in whith what you have now.
 # -----------Main program function calls for Instagram_Downloader -------------------------------------#
 #
 # try:
