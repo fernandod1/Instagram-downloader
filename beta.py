@@ -72,11 +72,13 @@ smhost = "https://instagram.com"
 # --------------------------------------------------------------------------------------#
 
 # This indentation is..Ughhh, fix it Chris.
-class Instagram_Downloader():
+# Is the  (): needed on this class creation?
+# Can you do it the basic way using just the : ??
+class Instagram_Downloader(): 
 		'''Some of James Kettle's smuggler.py attributes for REFERENCE'''
 
 		def __init__(self, smhost, username=""):
-				self._host = smhost
+				self._host = smhost  # does this Internal Attribute need the underscore prefix? 
 				self.username = username
 				self.user_id = ""
 				self.jsondata = ""
@@ -84,7 +86,7 @@ class Instagram_Downloader():
 				self.hash_timeline = ""
 
 		def run(self):
-			"""receivess the call sm.run() to execute the code"""
+			"""receivess the call sm.run() to execute the code. I want to do run this as succiently as possible"""
 			while True:
 				Parser = argparse.ArgumentParser()
 
@@ -126,7 +128,8 @@ class Instagram_Downloader():
 
 		def set_apilabel(self, label):
 			self.apilabel = label
-
+                 
+		# A lot of this lengthy & hard to read code could be eliminated with aan account login feature. 
 		def has_next_page(self):
 			return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["has_next_page"]
 
