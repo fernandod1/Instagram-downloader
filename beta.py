@@ -29,10 +29,10 @@ from lib.colorama import Fore, Style
 # or use asyncio or other concurrency? could conflict with API calls and result in being blocked
 # How to call the class and functions to run the program ??
 # create a separate module , (menu.py) to be imported??
+# Probably need to use the sleep() function time.sleep(5)  # pause to avoid ban
 # What adjstments to the class, ( or more classes?), attributes and functions will be needed?
 # Ultimately how to run the program? ie: Calling the classes, functions etc..
 # Much of this code was inspired by James Kettle's HTTP Request Smuggling Python code. Thus the similarities.
-# INSTAGRAM_USERNAME = "theproperpeople "
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 # --------------------------------------------------------------------------------------#
@@ -70,31 +70,61 @@ class Instagram_Downloader():
 				print("Directory ", self.username, " already exists.")
 
 		def get_total_photos(self):
-			pass
+			return int((self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["count"]))
 
 		def set_user_id(self):
-			pass
+			self.user_id = int(self.jsondata.json()[self.apilabel]["user"]["id"])
 
 		def get_end_cursor_timeline_media(self):
-			pass
+			return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["end_cursor"]
 
 		def write_resume_end_cursor_timeline_media(self):
-			pass
+			# create file with last page downladed to resume if needed
+			f = open("resume_"+self.username+".txt", "w")
+			f.write(str(self.get_end_cursor_timeline_media()))
+			f.close()
 
 		def read_resume_end_cursor_timeline_media(self):
-			pass
+			if os.path.isfile("resume_"+self.username+".txt"):
+				with open("resume_"+self.username+".txt") as f:
+					self.hash_timeline = f.readline().strip()
+					print("****************\nResume mode ON\n****************")
+					return True
+			else:
+				print("Not resume pending")
+				return False
 
 		def remove_resume_file(self):
-			pass
+			if os.path.exists("resume_"+self.username+".txt"):
+				os.remove("resume_"+self.username+".txt")
 
 		def set_apilabel(self, label):
-			pass
+			self.apilabel = label
 
 		def has_next_page(self):
-			pass
+			return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["has_next_page"]
 
 		def get_jsondata_instagram(self):
-			pass
+			headers = {
+				"Host": "www.instagram.com"
+				"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
+				}
+			if self.apilabel == "graphql":
+					self.jsondata = requests.get(
+							"https://www.instagram.com/" + self.username + "/feed/?__a=1", headers=headers)
+					self.hash_timeline = self.get_end_cursor_timeline_media()
+					self.set_user_id()
+				else:
+					self.jsondata = requests.get("https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(
+							self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D", headers=headers)
+					if user.has_next_page():
+						self.hash_timeline = self.get_end_cursor_timeline_media()
+					if (self.jsondata.status_code == 200):
+						print("----------------\nJson url loaded:\n----------------\nhttps://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" +
+						      str(self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D")
+					else:
+						print("Error, Incorrect json data url recieved.")
+					return self.jsondata
 
 		def download_photos(self):
 			pass
