@@ -28,6 +28,9 @@ from lib.colorama import Fore, Style
 # !! Fix INDENTATION !!
 
 # Thoughts, Ideas...
+# Why limit this to just an Instagram user profile downloader/scraper??
+# Why not turn it into a full-fledged OSINT-Style Social media scraper/Toolkit/framework/Suite? You could target a particular user/person/org/biz accross all platforms!?
+# Scrape/download User info from Instagram, Twitter, Snapchat, Facebook, LinkedIn, any personal websites, blogs, etc..
 # Maybe in lieu of messing with json and all the extra code & getting locked out maybe..
 # Create a login credential module and import that? Use a sock account/dummy account..whatever you wanna call it.
 # For OSINT purposes, Add a a Metadata exfiltration feature, (linux cmd line tools out there for that and Python scripts) could make them modules and import them.
