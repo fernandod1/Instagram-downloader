@@ -23,9 +23,9 @@ from lib.colorama import Fore, Style
 # DONE! Create a menu tailored to this scraper,
 # DONE! enter username prompt
 # Will I need to add another class? and or functions? (if threading then yes)
-# Create in directory in PWD os.chdir ?? etc..
-# Offer the ability to download more than just one Instagrammer at a time.
-# import threading module & create def queueRequests():
+# Is it possible to proxy individual requests/downloads through diffent servers to prevent IP ban?
+# Offer the ability to download more than just one Instagrammer at a time. (need proxies)
+# ?? import threading module & create def queueRequests(): 
 # or use asyncio or other concurrency? could conflict with API calls and result in being blocked
 # How to call the class and functions to run the program ??
 # create a separate module , (menu.py) to be imported??
@@ -128,6 +128,7 @@ class Instagram_Downloader():
 
 		def download_photos(self):
 			pass
+	
 
 		def download_videos(self):
 			pass
