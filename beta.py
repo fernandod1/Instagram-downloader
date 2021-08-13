@@ -10,18 +10,19 @@ import random
 import string
 import importlib
 import hashlib
-#import username
 from lib import Url
 from copy import deepcopy
 from time import sleep
 from datetime import datetime
 from lib.colorama import Fore, Style
-#  Version with Banner and menu
+
+#  Version with banner menu and added features.
 # --- UNDER CONSTRUCTION ----
 # Goals:
 # DONE! Create custom color banner- DONE!
 # DONE! Create a menu tailored to this scraper,
 # DONE! enter username prompt
+# !! Fix INDENTATION !!
 # Will I need to add another class? and or functions? (if threading then yes)
 # Is it possible to proxy individual requests/downloads through diffent servers to prevent IP ban?
 # Offer the ability to download more than just one Instagrammer at a time. (need proxies)
@@ -33,6 +34,26 @@ from lib.colorama import Fore, Style
 # What adjstments to the class, ( or more classes?), attributes and functions will be needed?
 # Ultimately how to run the program? ie: Calling the classes, functions etc..
 # Much of this code was inspired by James Kettle's HTTP Request Smuggling Python code. Thus the similarities.
+# Fix indentation and clean up the code & remember.. 
+
+# -------The ZEN of PYTHON-------
+# Complex is better than complicated.
+# Flat is better than nested.
+# Sparse is better than dense.
+# Readability counts.
+# Special cases aren't special enough to break the rules.
+# Although practicality beats purity.
+# Errors should never pass silently.
+# Unless explicitly silenced.
+# In the face of ambiguity, refuse the temptation to guess.
+# There should be one-- and preferably only one --obvious way to do it.
+# Although that way may not be obvious at first unless you're Dutch.
+# Now is better than never.
+# Although never is often better than *right* now.
+# If the implementation is hard to explain, it's a bad idea.
+# If the implementation is easy to explain, it may be a good idea.
+# Namespaces are one honking great idea -- let's do more of those!
+
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 # --------------------------------------------------------------------------------------#
@@ -45,7 +66,7 @@ smhost = "https://instagram.com"
 #         self.apilabel = "graphql"
 #         self.hash_timeline = ""
 
-
+# This indentation is..Ughhh, fix it Chris.
 class Instagram_Downloader():
 		'''SMUGGLER attributes for REFERENCE'''
 
