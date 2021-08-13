@@ -1,7 +1,7 @@
 # Instagram downloader
 Instagram user's photos and videos downloader. Download all media files from any public username. Working 2021.
 
-# I've forked this one from the original developer and am working on some extras.
+# I've forked this one from the original developer and am working on some extras, (see beta.py)
 # # Goals:
 # Version with Banner and menu
 # Create a color coded menu with progress printed to the screen. 
