@@ -212,9 +212,9 @@ if os.name == 'nt':
 Version = "v1.1"
 banner(Version)
 
-# Run it
+# Run it: Call the class on line 32
 sm = Instagram_Downloader(host, smhost)
-# still using James Kettle's http request smuggler smhost to call the class and main function
+# Call the run function on line 45
 sm.run()
 
 
