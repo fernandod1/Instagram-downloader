@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 
 # Adjust positional args:
-#
-# Ran it
 # ./beta_03.py -u theproperpeople
-
-# Current error
 # Traceback (most recent call last):
 #  File "./beta_03.py", line 213, in <module>
 #    sm = Instagram_Downloader(host, smhost)
 # TypeError: __init__() takes from 1 to 2 positional arguments but 3 were given
-
-
 import os
 import re
 import sys
@@ -31,13 +25,10 @@ from lib.colorama import Fore, Style
 
 
 host = "https://instagram.com"
-smhost = "https://instagram.com"
+smhost = "https://instagram.com
+# -------------------------------------------------------------------------------------------------------- #
 
-# Usage ./downloader.py -u instagramusername
-# example:
-# ./downloader.py -u brightsunfilms
-# ------------------------------Do not modify under this line--------------------------------------- #
-
+# Just one class, but do any of the attributes need modification??
 class Instagram_Downloader:
     def __init__(self, username=""):
         self.username = ""
@@ -46,10 +37,11 @@ class Instagram_Downloader:
         self.apilabel = "graphql"
         self.hash_timeline = ""
 
-
+    # Interface with user input on line 202
     def get_username(self):
         return self.username
 
+    # Main function that run this script
     def run(self):
         while True:
             Parser = argparse.ArgumentParser()
@@ -149,7 +141,7 @@ class Instagram_Downloader:
 
 
 
- #--------------------------------- HTTP Request SMUGGLER Inspired -------------------------------------#
+ #---------------------------------Color banner and user input menu -------------------------------------#
 
 def CF(text):
 	global NOCOLOR
