@@ -33,7 +33,6 @@ Having said that, this can cause some daily limits.
 
 # Usage of the modified version:
 ./ig_downloader_modified.py -username
- No source code configuration required.
 
 
 # CONFIGUREand use of the original 
