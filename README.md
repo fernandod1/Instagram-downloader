@@ -1,19 +1,28 @@
 # Instagram downloader
-Instagram user's photos and videos downloader. Download all media files from any public username. Working 2021.
+Instagram user's photos and videos downloader.
+Download all media files from any public username. 
+Rewritten and updated using Object Oriented Programming by https://github.com/fernandod1 for 2021.
 
-# I've forked this one from the original developer and am working on some extras, (see beta.py)
-# # Goals:
-# Version with Banner and menu
-# Create a color coded menu with progress printed to the screen. 
-# Ability to select the directory for the new user file: os.chdir ??,  etc..
-# Offer the ability to download more than just one Instagrammer at a time.
-# Import the threading module & create def queueRequests():  
-# Or use asyncio or other concurrency? Caveat: This could conflict with Instagram's API and result in being temporaraly blocked.
-# Regardless, the current instagram_downloader.py  works very well.
+I've forked this one from the original developer whith whom I collaborated on the original 
+Instagram Downloader: https://github.com/fernandod1/Instagram-downloader
+and am working on an enhanced version: see beta.py in this repo.
 
-LIMITS: 
+# Goals & Ideas:
+Create a color coded menu & banner & have progress printed to the screen. 
+Offer the ability to download more than just one Instagrammer at a time.
+?? Import the threading module & create def queueRequests() etc..??
+?? Or use asyncio or other concurrency?
+Caveat: This will conflict with Instagram's API and result in being temporaraly blocked. (bypass using proxiess/API calls? like in the sms flooders??)
+Implement a metadata exfiltration tool within the script.
 
-Script does not requires a token or username/pass to use Instagram API, this causes some daily limits:
+# Ultimate goal: 
+Integrate this or another Instagram scraper into a larger OSINT Framework.
+Scrape a target's entire social media presence and then some. FB, IG, Twitter, personal website, etc..
+Can be used inconjuction with Spiderfoot for an even more comprehensive dossier.  
+
+# Current Limits of instagram_downloader.py
+Script does not requires a token or username/pass to use Instagram API, 
+Having said that, this can cause some daily limits.
 
 - Script has been tested in single execution and downloads around 2200 images/videos.
 - Instagram API limits daily queries, so if script reachs limit, I recommend you to execute script again in 12 hours so that daily limit is expired.
