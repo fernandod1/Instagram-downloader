@@ -209,7 +209,7 @@ NOCOLOR = Args.no_color
 if os.name == 'nt':
 	NOCOLOR = True
 
-Version = "v1.1"
+Version = "v2.0"
 banner(Version)
 
 # Run it: Call the class on line 32
