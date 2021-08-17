@@ -28,17 +28,19 @@ Having said that, this can cause some daily limits.
 - Script has been tested in single execution and downloads around 2200 images/videos.
 - Instagram API limits daily queries, so if script reachs limit, I recommend you to execute script again in 12 hours so that daily limit is expired.
 - I have added a resume mode so that you can execute again script and it will continue from last image downladed.
+- Requires: Python v3
 
-Requirement: Python v3
+
 # Usage of the modified version:
-./ig_downloader_modified_beta_version.py -u theproperpeople
+./ig_downloader_modified.py -username
+ No source code configuration required.
 
-# usage of the no-mofified version:
-CONFIGURE 
+
+# CONFIGUREand use of the original 
 Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
 INSTAGRAM_USERNAME = "SET_INSTAGRAM_USERNAME"
 
-USAGE COMMAND:
+# USAGE COMMAND of the no-mofified version:
 python instagram_downloader.py
 
 DISCLAIMER:
