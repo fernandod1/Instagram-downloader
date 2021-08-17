@@ -17,8 +17,8 @@ Implement a metadata exfiltration tool within the script.
 
 # Ultimate goal: 
 Integrate this or another Instagram scraper into a larger OSINT Framework.
-Scrape a target's entire social media presence and then some. FB, IG, Twitter, personal website, etc..
-Can be used inconjuction with Spiderfoot for an even more comprehensive dossier.  
+Scrape a target's entire social media presence and then some..such as FB, IG, Twitter, personal websites and more, etc..
+Could be used inconjuction with Spiderfoot to create an even more comprehensive dossier.  
 
 # Current Limits of instagram_downloader.py
 Script does not requires a token or username/pass to use Instagram API, 
