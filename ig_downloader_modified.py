@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Adjust positional args:
-# ./ig_downloader_modified_beta_version.py -u theproperpeople
+# ./ig_downloader_modified.py -u theproperpeople
 # Traceback (most recent call last):
 #  File "./beta_03.py", line 213, in <module>
 #    sm = Instagram_Downloader(host, smhost)
