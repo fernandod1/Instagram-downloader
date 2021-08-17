@@ -30,18 +30,18 @@ Having said that, this can cause some daily limits.
 - I have added a resume mode so that you can execute again script and it will continue from last image downladed.
 
 Requirement: Python v3
+# Usage of the modified version:
+./ig_downloader_modified_beta_version.py -u theproperpeople
 
-CONFIGURE:
-
+# usage of the no-mofified version:
+CONFIGURE 
 Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
 INSTAGRAM_USERNAME = "SET_INSTAGRAM_USERNAME"
 
 USAGE COMMAND:
-
 python instagram_downloader.py
 
 DISCLAIMER:
-
 "Instagram-downloader" repository is in no way affiliated with, authorized, maintained or endorsed by Instagram or any of its affiliates or subsidiaries. This is an independent and unofficial project. Use at your own risk and respect copyrights of media files.
 
 COLLABORATIONS:
