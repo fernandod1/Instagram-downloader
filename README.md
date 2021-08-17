@@ -35,7 +35,7 @@ Having said that, this can cause some daily limits.
 ./ig_downloader_modified.py -username
 
 
-# CONFIGUREand use of the original 
+# Using the non-modified script
 Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
 INSTAGRAM_USERNAME = "SET_INSTAGRAM_USERNAME"
 
