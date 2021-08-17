@@ -1,3 +1,4 @@
+![ig_download_munu](https://user-images.githubusercontent.com/46334926/129803943-047d1d27-8b9c-4ee7-b83e-ff39e75056ec.png)
 # Instagram downloader
 Instagram user's photos and videos downloader.
 Download all media files from any public username. 
