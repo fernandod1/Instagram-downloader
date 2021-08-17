@@ -5,7 +5,7 @@ Rewritten and updated using Object Oriented Programming by https://github.com/fe
 
 I've forked this one from the original developer whith whom I collaborated on the original 
 Instagram Downloader: https://github.com/fernandod1/Instagram-downloader
-and am working on an enhanced version: see beta.py in this repo.
+and am working on an enhanced version.
 
 # Goals & Ideas:
 Create a color coded menu & banner & have progress printed to the screen. 
