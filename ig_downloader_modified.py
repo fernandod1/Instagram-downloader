@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 
-# Adjust positional args:
-# ./ig_downloader_modified.py -u theproperpeople
-# Traceback (most recent call last):
-#  File "./beta_03.py", line 213, in <module>
-#    sm = Instagram_Downloader(host, smhost)
-# TypeError: __init__() takes from 1 to 2 positional arguments but 3 were given
 import os
 import re
 import sys
@@ -21,6 +15,8 @@ import urllib.request
 from time import sleep
 from copy import deepcopy
 from datetime import datetime
+
+from instagram_downloader import user
 from lib.colorama import Fore, Style
 
 
@@ -31,7 +27,7 @@ smhost = "https://instagram.com"
 # Just one class, but do any of the attributes need modification??
 class Instagram_Downloader:
     def __init__(self, username=""):
-        self.username = ""
+        self.username = username
         self.user_id = ""
         self.jsondata = ""
         self.apilabel = "graphql"
@@ -41,7 +37,7 @@ class Instagram_Downloader:
     def get_username(self):
         return self.username
 
-    # Main function that run this script
+     # Main function that run this script
     def run(self):
         while True:
             Parser = argparse.ArgumentParser()
@@ -189,7 +185,6 @@ def print_info(msg, file_handle=None):
 	if file_handle is not None:
 		file_handle.write(plaintext + "\n")
 
-
 if __name__ == "__main__":
 	global NOCOLOR
 	if sys.version_info < (3, 0):
@@ -197,13 +192,14 @@ if __name__ == "__main__":
 		sys.exit(1)
 
 # Goal: Offer the ability to select more than just one Instagram User
-# Redo-EDIT this menue for its puposes.
+# Something is off when taking the -u
 Parser = argparse.ArgumentParser()
 Parser.add_argument('-u', '--user', help="INSTAGRAM_USERNAME")
 Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
 Parser.add_argument('--no-color', action='store_true', help="Suppress color codes")
 #Parser.add_argument('-c', '--configfile', default="default.py",help="Filepath to the configuration file of payloads")
 Args = Parser.parse_args()  # returns data from the options specified (ech
+
 
 NOCOLOR = Args.no_color
 if os.name == 'nt':
@@ -213,31 +209,6 @@ Version = "v2.0"
 banner(Version)
 
 # Run it: Call the class on line 32
-sm = Instagram_Downloader(host, smhost)
-# Call the run function on line 45
+sm = Instagram_Downloader(username="") #append .run() instead of calling sm.run() below ??  
 sm.run()
 
-
-# --------------------------------- Main program (Previous)-------------------------------------#
-#
-#try:
-#    user = Instagram_Downloader(INSTAGRAM_USERNAME)
-#    user.create_download_directory()
-#    user.get_jsondata_instagram()
-#    user.download_photos()
-#    user.download_videos()
-#    user.set_apilabel("data")
-#    user.read_resume_end_cursor_timeline_media()
-#    while True:
-#        time.sleep(5) # pause to avoid ban
-#        user.get_jsondata_instagram()
-#        user.download_photos()
-#        user.download_videos()
-#        user.write_resume_end_cursor_timeline_media()
-#        if user.has_next_page() == False:
-#            user.remove_resume_file()
-#            print("Done. All images/videos downloaded for "+INSTAGRAM_USERNAME+" account.")
-#            break
-#except:
-#    print("Notice: script premature finished due to daily limit of number of requests to Instagram API.")
-#    print("Just execute script AGAIN in few hours to continue RESUME of pending images/videos to download.")
