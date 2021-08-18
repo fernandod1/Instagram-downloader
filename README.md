@@ -32,7 +32,7 @@ Having said that, this can cause some daily limits.
 
 
 # Usage of the modified version:
-./ig_downloader_modified.py -username
+./ig_downloader_modified.py -u targetusername
 
 
 # Using the non-modified script
