@@ -208,7 +208,7 @@ if os.name == 'nt':
 Version = "v2.0"
 banner(Version)
 
-# Run it: Call the class on line 32
+# Call it
 sm = Instagram_Downloader(username="") #append .run() instead of calling sm.run() below ??  
 sm.run()
 
