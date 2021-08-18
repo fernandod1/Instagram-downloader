@@ -25,7 +25,7 @@ from lib.colorama import Fore, Style
 
 
 host = "https://instagram.com"
-smhost = "https://instagram.com
+smhost = "https://instagram.com"
 # -------------------------------------------------------------------------------------------------------- #
 
 # Just one class, but do any of the attributes need modification??
