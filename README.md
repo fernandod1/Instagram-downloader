@@ -39,7 +39,7 @@ Having said that, this can cause some daily limits.
 Set in line 14 public instagram username you want to download photos from (Example: ladygaga):
 INSTAGRAM_USERNAME = "SET_INSTAGRAM_USERNAME"
 
-# USAGE COMMAND of the no-mofified version:
+# USAGE COMMAND of the non-mofified version:
 python instagram_downloader.py
 
 DISCLAIMER:
