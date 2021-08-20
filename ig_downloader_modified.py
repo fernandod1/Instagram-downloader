@@ -37,8 +37,8 @@ class Instagram_Downloader:
     def get_username(self):
         return self.username
 
-     # Main function that run this script.
-     # Program just runs as an infinite loop, (but the banner is displying)
+     # Main function that's supposed to run the script.
+     # As of now, program just runs as an infinite loop, (but the banner is displying)
      # Needs work on parsing 
     def run(self):
         while True:
@@ -139,6 +139,7 @@ class Instagram_Downloader:
 
  #---------------------------------Color banner and user input menu -------------------------------------#
 
+# Create menu.py and import it as a module instead of displaaying it here???
 def CF(text):
 	global NOCOLOR
 	if NOCOLOR:
