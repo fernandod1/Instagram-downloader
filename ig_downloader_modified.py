@@ -22,16 +22,14 @@ from lib.colorama import Fore, Style
 # Doesn't run unless I provide the same URL twice as two similar but different variables, (redundant)
 host = "https://instagram.com"
 smhost = "https://instagram.com"
-
-
 # -------------------------------------------------------------------------------------------------------- #
+
 # Updates & Changes:
 # Renamed all instances of username to user
 # Inserted a space between all vars and their values, example name = property(get_user)
 # Eliminated spaces between plus '+' and it's neighboring characters.
-# Any modifications to the current attributes needed???
+# ?? Any modifications needed to any of the current attributes ??
 # Seems like something is not quite right
-# ?? Any of the attributes need modification ??
 class Instagram_Downloader:
     def __init__(self, user):
         self.user = user
@@ -50,14 +48,14 @@ class Instagram_Downloader:
     #def get_user(self):
     #    return self.username
 
-    # Augmenting get_user to this:
+    # Therefore, augmenting get_user to this:
     def get_user(self, user):
         return self.user
 
-    # Seems to be legit now
+    # This variable seems to be working now
     name = property(get_user)
 
-    # Creates an empty ' ' # I'm not passing the get_user info to os.mkdir correctly
+    # Creates an empty directory ' '  must not be passing the get_user info to os.mkdir correctly
     def create_download_directory(self):
         try:
             user = self.user
@@ -211,7 +209,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
         # Goal: Offer the ability to select more than just one Instagram User
-        # Something's off here, you're not using argparse correctly
+        # Something's off here, don't think argparse is deployed correctly
         Parser = argparse.ArgumentParser()
         Parser.add_argument('-u', type=str, help='username')
         Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
@@ -226,7 +224,7 @@ if __name__ == "__main__":
         Version = "v2.0"
         banner(Version)
 
-	# I want to pass the selected user / new directory name here where it saays "Working"
+	# I want to pass the selected user/new directory name here where it says "Working"
         print_info("Working: %s" % Fore.CYAN)
         print_info("Time: %s" % (Fore.CYAN + str(float(Args.timeout)) + Fore.MAGENTA + " seconds"))
 
