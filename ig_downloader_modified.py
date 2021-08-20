@@ -52,8 +52,7 @@ class Instagram_Downloader:
     def get_user(self, user):
         return self.user
 
-    # This variable seems to be working now
-    name = property(get_user)
+    # name = property(get_user)
 
     # Problem: This is creating an empty/nameless directory ' '  must not be passing the get_user info to os.mkdir correctly
     def create_download_directory(self):
