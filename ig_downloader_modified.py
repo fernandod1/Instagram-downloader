@@ -23,13 +23,13 @@ from lib.colorama import Fore, Style
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 # -------------------------------------------------------------------------------------------------------- #
-
-# Updates & Changes:
-# Renamed all instances of username to user
-# Inserted a space between all vars and their values, example name = property(get_user)
-# Eliminated spaces between plus '+' and it's neighboring characters.
-# ?? Any modifications needed to any of the current attributes ??
-# Seems like something is not quite right
+# Running better now, but not 100%
+# ATTENTION! Updates & Changes:
+# 1. Renamed all instances of username to user
+# 2. Inserted a space between all vars and their values, example name = property(get_user)
+# 3. Eliminated spaces between plus '+' and it's neighboring characters.
+# Question: Any modifications needed to any of the current attributes ??
+# Thought: Seems like something is not quite right
 class Instagram_Downloader:
     def __init__(self, user):
         self.user = user
@@ -39,23 +39,23 @@ class Instagram_Downloader:
         self.hash_timeline = ""
 
 
-    # Main function that run this script
-    # Replace 'pass' with what though?
+    # Main function:
+    # Replace 'pass' with what?
     def run(self):
         pass
 
-    # This method's not working so well
+    # Original: The only parameter was self
     #def get_user(self):
     #    return self.username
 
-    # Therefore, augmenting get_user to this:
+    # Added user as an argument/parameter
     def get_user(self, user):
         return self.user
 
     # This variable seems to be working now
     name = property(get_user)
 
-    # Creates an empty directory ' '  must not be passing the get_user info to os.mkdir correctly
+    # Problem: This is creating an empty/nameless directory ' '  must not be passing the get_user info to os.mkdir correctly
     def create_download_directory(self):
         try:
             user = self.user
@@ -154,7 +154,7 @@ class Instagram_Downloader:
 
 # ---------------------------------Color banner and user input menu -------------------------------------#
 
-# Increased indent from here down.
+# Update: Increased all indents from here down.
 def CF(text):
         global NOCOLOR
         if NOCOLOR:
@@ -191,7 +191,7 @@ def banner(sm_version):
 	    print(CF(r"     LinuxUser255                                                                     %s" % (sm_version)))
 	    print(CF(Style.RESET_ALL))
 
-# Commented out all references to 'file_handle', it was in regards to an old config file
+# Update: Commented out all references to 'file_handle', it was in regards to an old config file
 def print_info(msg): # file_handle = None
         ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
         msg = Style.BRIGHT + Fore.MAGENTA + \
@@ -209,7 +209,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
         # Goal: Offer the ability to select more than just one Instagram User
-        # Something's off here, don't think argparse is deployed correctly
+        # Thought: Something's off here, don't think argparse is deployed correctly
         Parser = argparse.ArgumentParser()
         Parser.add_argument('-u', type=str, help='username')
         Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
@@ -224,7 +224,7 @@ if __name__ == "__main__":
         Version = "v2.0"
         banner(Version)
 
-	# I want to pass the selected user/new directory name here where it says "Working"
+	# Goal: pass the selected user/new directory name here where it says "Working"
         print_info("Working: %s" % Fore.CYAN)
         print_info("Time: %s" % (Fore.CYAN + str(float(Args.timeout)) + Fore.MAGENTA + " seconds"))
 
