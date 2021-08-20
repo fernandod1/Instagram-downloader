@@ -22,6 +22,10 @@ from lib.colorama import Fore, Style
 # Doesn't run unless I provide the same URL twice as two similar but different variables, (redundant)
 host = "https://instagram.com"
 smhost = "https://instagram.com"
+
+# Experimenting with ccreating the user directory
+destination = "/temp"
+sub_folder = "test"
 # -------------------------------------------------------------------------------------------------------- #
 # Running better now, but not 100%
 # ATTENTION! Updates & Changes:
@@ -58,7 +62,10 @@ class Instagram_Downloader:
     def create_download_directory(self):
         try:
             user = self.user
-            os.mkdir(self.user.new_dir(user))
+            #os.mkdir(self.user.new_dir(user))
+	    os.mkdir(os.path.join(destination))
+	# Attn: See lines 27 & 28 for reference to this
+	    print("Directory",os.path.join(sub_folder , "created.")
             print("Directory ", self.user.new_dir, " created.")
         except FileExistsError:
             print("Directory ", self.user.new_dir, " already exists.")
