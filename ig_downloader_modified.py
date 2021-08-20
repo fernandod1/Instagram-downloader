@@ -19,12 +19,12 @@ from datetime import datetime
 from instagram_downloader import user
 from lib.colorama import Fore, Style
 
-
+# Doesn't run unless I privide the URL twice as two simmilar but different variables
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 # -------------------------------------------------------------------------------------------------------- #
 
-# Just one class, but do any of the attributes need modification??
+#  Any modifications to the current attributes needed???
 class Instagram_Downloader:
     def __init__(self, username=""):
         self.username = username
@@ -33,15 +33,18 @@ class Instagram_Downloader:
         self.apilabel = "graphql"
         self.hash_timeline = ""
 
-    # Interface with user input on line 202
+    # This method's not working so well
     def get_username(self):
         return self.username
 
-     # Main function that run this script
+     # Main function that run this script.
+     # Program just runs as an infinite loop, (but the banner is displying)
+     # Needs work on parsing 
     def run(self):
         while True:
             Parser = argparse.ArgumentParser()
 
+    # Not currently creating a directory, except sometimes just an empty ' '	
     def create_download_directory(self):
         try:
             os.mkdir(self.username)
@@ -134,9 +137,6 @@ class Instagram_Downloader:
                 i = i + 1
 
 
-
-
-
  #---------------------------------Color banner and user input menu -------------------------------------#
 
 def CF(text):
@@ -192,7 +192,7 @@ if __name__ == "__main__":
 		sys.exit(1)
 
 # Goal: Offer the ability to select more than just one Instagram User
-# Something is off when taking the -u
+# Something is off when taking the -u argument
 Parser = argparse.ArgumentParser()
 Parser.add_argument('-u', '--user', help="INSTAGRAM_USERNAME")
 Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
@@ -209,6 +209,6 @@ Version = "v2.0"
 banner(Version)
 
 # Call it
-sm = Instagram_Downloader(username="") #append .run() instead of calling sm.run() below ??  
+sm = Instagram_Downloader(username="") #append .run() instead of calling sm.run() below ?? That kinda works.  
 sm.run()
 
