@@ -25,10 +25,13 @@ smhost = "https://instagram.com"
 
 
 # -------------------------------------------------------------------------------------------------------- #
-# Update: renamed all instances of username to user
+# Updates & Changes:
+# Renamed all instances of username to user
+# Inserted a space between all vars and their values, example name = property(get_user)
+# Eliminated spaces between plus '+' and it's neighboring characters.
 # Any modifications to the current attributes needed???
 # Seems like something is not quite right
-# Just one class, but do any of the attributes need modification??
+# ?? Any of the attributes need modification ??
 class Instagram_Downloader:
     def __init__(self, user):
         self.user = user
@@ -39,6 +42,7 @@ class Instagram_Downloader:
 
 
     # Main function that run this script
+    # Replace 'pass' with what though?
     def run(self):
         pass
 
@@ -46,14 +50,14 @@ class Instagram_Downloader:
     #def get_user(self):
     #    return self.username
 
-    # Augmenting this method too
+    # Augmenting get_user to this:
     def get_user(self, user):
         return self.user
 
-    # No.
-    name=property(get_user)
+    # Seems to be legit now
+    name = property(get_user)
 
-    # Creates an empty ' '
+    # Creates an empty ' ' # I'm not passing the get_user info to os.mkdir correctly
     def create_download_directory(self):
         try:
             user = self.user
@@ -70,12 +74,14 @@ class Instagram_Downloader:
 
     def get_end_cursor_timeline_media(self):
         return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["end_cursor"]
-
+     
+    # Eliminated spaces between '+' and it's neighboring characters. See next comment.
     def write_resume_end_cursor_timeline_media(self):
         f = open("resume_"+ self.user+".txt", "w")  # create file with last page download to resume if needed.
         f.write(str(self.get_end_cursor_timeline_media()))
         f.close()
 
+    # Notice no space between the plus sign in ("resume_"+ self.user+".txt")
     def read_resume_end_cursor_timeline_media(self):
         if os.path.isfile("resume_"+ self.user+ ".txt"):
             with open("resume_"+ self.user+".txt") as f:
@@ -105,7 +111,7 @@ class Instagram_Downloader:
             self.jsondata = requests.get("https://www.instagram.com/" + self.user + "/feed/?__a=1", headers=headers)
             self.hash_timeline = self.get_end_cursor_timeline_media()
             self.set_user_id()
-        else:
+        else:                    # Eliminated word wrap on the long lines
             self.jsondata = requests.get("https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D", headers=headers)
             if user.has_next_page():
                 self.hash_timeline = self.get_end_cursor_timeline_media()
@@ -150,7 +156,7 @@ class Instagram_Downloader:
 
 # ---------------------------------Color banner and user input menu -------------------------------------#
 
-# Create menu.py and import it as a module instead of displaying it here???
+# Increased indent from here down.
 def CF(text):
         global NOCOLOR
         if NOCOLOR:
@@ -158,7 +164,7 @@ def CF(text):
                 text = ansi_escape.sub('', text)
         return text
 
-
+# Doubled the indent
 def banner(sm_version):
 	    print(CF(Fore.CYAN))
 	    print(CF(r" _                                                                                                  "))
@@ -187,8 +193,8 @@ def banner(sm_version):
 	    print(CF(r"     LinuxUser255                                                                     %s" % (sm_version)))
 	    print(CF(Style.RESET_ALL))
 
-
-def print_info(msg): # file_handle=None
+# Commented out all references to 'file_handle', it was in regards to an old config file
+def print_info(msg): # file_handle = None
         ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
         msg = Style.BRIGHT + Fore.MAGENTA + \
         "[%s] %s" % (Fore.CYAN + '+' + Fore.MAGENTA, msg) + Style.RESET_ALL
@@ -197,7 +203,7 @@ def print_info(msg): # file_handle=None
         #if file_handle is not None:
                 #file_handle.write(plaintext + "\n")
 
-
+# Doubled/increased indent
 if __name__ == "__main__":
         global NOCOLOR
         if sys.version_info < (3, 0):
@@ -220,6 +226,7 @@ if __name__ == "__main__":
         Version = "v2.0"
         banner(Version)
 
+	# I want to pass the selected user / new directory name here where it saays "Working"
         print_info("Working: %s" % Fore.CYAN)
         print_info("Time: %s" % (Fore.CYAN + str(float(Args.timeout)) + Fore.MAGENTA + " seconds"))
 
