@@ -44,21 +44,15 @@ class Instagram_Downloader:
 
 
     # Main function:
-    # Replace 'pass' with what?
+    # What to use?? arguments to pass etc..
     def run(self):
         pass
-
-    # Original: The only parameter was self
-    #def get_user(self):
-    #    return self.username
 
     # Added user as an argument/parameter
     def get_user(self, user):
         return self.user
 
-    # name = property(get_user)
-
-    # Problem: This is creating an empty/nameless directory ' '  must not be passing the get_user info to os.mkdir correctly
+    # Problem: This is creating an empty/nameless directory ' '  
     def create_download_directory(self):
         try:
             user = self.user
