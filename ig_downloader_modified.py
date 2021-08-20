@@ -59,7 +59,7 @@ class Instagram_Downloader:
             #os.mkdir(self.user.new_dir(user))
 	    os.mkdir(os.path.join(destination))
 	# Attn: See lines 27 & 28 for reference to this
-	    print("Directory",os.path.join(sub_folder , "created.")
+	    print("Directory",os.path.join(sub_folder) , "created.")
             print("Directory ", self.user.new_dir, " created.")
         except FileExistsError:
             print("Directory ", self.user.new_dir, " already exists.")
