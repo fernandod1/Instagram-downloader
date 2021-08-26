@@ -35,7 +35,7 @@ smhost = "https://instagram.com"
 # Question: Any modifications needed to any of the current attributes ??
 # Thought: Seems like something is not quite right
 class Instagram_Downloader:
-    def __init__(self, user):
+    def __init__(self, user=""):
         self.user = user
         self.user_id = ""
         self.jasondata = ""
