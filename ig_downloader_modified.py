@@ -24,8 +24,8 @@ host = "https://instagram.com"
 smhost = "https://instagram.com"
 
 # Experimenting with ccreating the user directory
-destination = "/temp"
-sub_folder = "test"
+# destination = "/temp"
+# sub_folder = "test"
 # -------------------------------------------------------------------------------------------------------- #
 # Running better now, but not 100%
 # ATTENTION! Updates & Changes:
@@ -56,10 +56,10 @@ class Instagram_Downloader:
     def create_download_directory(self):
         try:
             user = self.user
-            #os.mkdir(self.user.new_dir(user))
-	    os.mkdir(os.path.join(destination))
+            os.mkdir(self.user.new_dir(user))
+	    #os.mkdir(os.path.join(destination))
 	# Attn: See lines 27 & 28 for reference to this
-	    print("Directory",os.path.join(sub_folder) , "created.")
+	    #print("Directory",os.path.join(sub_folder) , "created.")
             print("Directory ", self.user.new_dir, " created.")
         except FileExistsError:
             print("Directory ", self.user.new_dir, " already exists.")
@@ -211,7 +211,8 @@ if __name__ == "__main__":
         # Goal: Offer the ability to select more than just one Instagram User
         # Thought: Something's off here, don't think argparse is deployed correctly
         Parser = argparse.ArgumentParser()
-        Parser.add_argument('-u', type=str, help='username')
+	Parser.add_argument('-u', '--user', help="Provide an Instagram Username")
+        #Parser.add_argument('-u', type=str, help='username')
         Parser.add_argument('-x', '--exit_early', action='store_true', help="Exit scan on first finding")
         Parser.add_argument('-t', '--timeout', default=5.0, help="Socket timeout value Default: 5")
         Parser.add_argument('--no-color', action='store_true', help="Suppress color codes")
