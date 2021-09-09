@@ -35,7 +35,7 @@ smhost = "https://instagram.com"
 # 1. Renamed all instances of username to user
 # 2. Inserted a space between all vars and their values, example name = property(get_user)
 # 3. Eliminated spaces between plus '+' and it's neighboring characters. (script runs better that way)
-# Question: Any modifications needed to the classor any of it's current attributes ??
+# Question: Any modifications needed to the class or any of it's current attributes ??
 
 class Instagram_Downloader:
     def __init__(self, user=""):
@@ -76,13 +76,13 @@ class Instagram_Downloader:
     def get_end_cursor_timeline_media(self):
         return self.jsondata.json()[self.apilabel]["user"]["edge_owner_to_timeline_media"]["page_info"]["end_cursor"]
      
-    # Eliminated spaces between '+' and it's neighboring characters. See next comment.
+    # Eliminated spaces between '+' and it's neighboring characters..less buggy See next comment.
     def write_resume_end_cursor_timeline_media(self):
         f = open("resume_"+ self.user+".txt", "w")  # create file with last page download to resume if needed.
         f.write(str(self.get_end_cursor_timeline_media()))
         f.close()
 
-    # Notice no space between the plus sign in ("resume_"+ self.user+".txt")
+    # Notice no space between the plus sign in ("resume_"+ self.user+".txt"). Again, not causing problems this way.
     def read_resume_end_cursor_timeline_media(self):
         if os.path.isfile("resume_"+ self.user+ ".txt"):
             with open("resume_"+ self.user+".txt") as f:
