@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Too many lib imports? Which ones aren't needed?
 import os
 import os.path
 import re
@@ -19,11 +20,12 @@ from datetime import datetime
 from instagram_downloader import user
 from lib.colorama import Fore, Style
 
-# Doesn't run unless I provide the same URL twice as two similar but different variables, (redundant)
+# Doesn't run unless I provide the same URL twice as two similar but different variables.. 
+#  ¯\_(ツ)_/¯
 host = "https://instagram.com"
 smhost = "https://instagram.com"
 
-# Experimenting with ccreating the user directory
+# Experimenting with creating the user directory
 # destination = "/temp"
 # sub_folder = "test"
 # -------------------------------------------------------------------------------------------------------- #
@@ -32,9 +34,9 @@ smhost = "https://instagram.com"
 # I know that line length in Python should be limited to 79 characters. But this script is less buggy as is.
 # 1. Renamed all instances of username to user
 # 2. Inserted a space between all vars and their values, example name = property(get_user)
-# 3. Eliminated spaces between plus '+' and it's neighboring characters.
-# Question: Any modifications needed to any of the current attributes ??
-# Thought: Seems like something is not quite right
+# 3. Eliminated spaces between plus '+' and it's neighboring characters. (script runs better that way)
+# Question: Any modifications needed to the classor any of it's current attributes ??
+
 class Instagram_Downloader:
     def __init__(self, user=""):
         self.user = user
@@ -58,7 +60,7 @@ class Instagram_Downloader:
         try:
             user = self.user
             os.mkdir(self.user.new_dir(user))
-	    #os.mkdir(os.path.join(destination))
+	    #os.mkdir(os.path.join(destination))     
 	# Attn: See lines 27 & 28 for reference to this
 	    #print("Directory",os.path.join(sub_folder) , "created.")
             print("Directory ", self.user.new_dir, " created.")
@@ -110,7 +112,7 @@ class Instagram_Downloader:
             self.jsondata = requests.get("https://www.instagram.com/" + self.user + "/feed/?__a=1", headers=headers)
             self.hash_timeline = self.get_end_cursor_timeline_media()
             self.set_user_id()
-        else:                    # Eliminated word wrap on the long lines
+        else:               # Eliminated word wrap on the long lines. Not appropriate line length of 79, but less buggy this way. ¯\_(ツ)_/¯
             self.jsondata = requests.get("https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%22" + str(self.user_id) + "%22%2C%22first%22%3A12%2C%22after%22%3A%22" + str(self.hash_timeline) + "%22%7D", headers=headers)
             if user.has_next_page():
                 self.hash_timeline = self.get_end_cursor_timeline_media()
