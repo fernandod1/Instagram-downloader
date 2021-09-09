@@ -29,6 +29,7 @@ smhost = "https://instagram.com"
 # -------------------------------------------------------------------------------------------------------- #
 # Running better now, but not 100%
 # ATTENTION! Updates & Changes:
+# I know that line length in Python should be limited to 79 characters. But this script is less buggy as is.
 # 1. Renamed all instances of username to user
 # 2. Inserted a space between all vars and their values, example name = property(get_user)
 # 3. Eliminated spaces between plus '+' and it's neighboring characters.
