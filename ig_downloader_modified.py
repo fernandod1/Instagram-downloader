@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Too many lib imports? Which ones aren't needed?
+# Too many imports? Which ones aren't needed?   ¯\_(ツ)_/¯
 import os
 import os.path
 import re
