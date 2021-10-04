@@ -1,5 +1,5 @@
 ![ig_downloadV2](https://user-images.githubusercontent.com/46334926/129806199-ae5900f7-e87a-49b7-b2e1-3d15b3e52120.png)
-# Instagram downloader
+# Instagram downloader (new)
 Instagram user's photos and videos downloader.
 Download all media files from any public username. 
 
