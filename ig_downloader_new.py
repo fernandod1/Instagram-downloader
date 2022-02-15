@@ -23,7 +23,7 @@ from lib.colorama import Fore, Style
 # Doesn't run unless I provide the same URL twice as two similar but different variables.. 
 #  ¯\_(ツ)_/¯
 host = "https://instagram.com"
-smhost = "https://instagram.com"
+shost = "https://instagram.com"
 
 # Experimenting with creating the user directory
 # destination = "/temp"
@@ -38,8 +38,9 @@ smhost = "https://instagram.com"
 # Question: Any modifications needed to the class or any of it's current attributes ??
 
 class Instagram_Downloader:
-    def __init__(self, user=""):
+    def __init__(self, shost, user=""):
         self.user = user
+	self.shost = shost
         self.user_id = ""
         self.jasondata = ""
         self.apilabel = "graphql"
@@ -51,18 +52,16 @@ class Instagram_Downloader:
     def run(self):
         pass
 
-    # Added user as an argument/parameter
+    # Add the user via the arg parser
     def get_user(self, user):
         return self.user
 
-    # Problem: This is creating an empty/nameless directory ' '  
+    # Problem: This is creating an empty/nameless directory ' '
+    # needs to create a user directory based on the function above
     def create_download_directory(self):
         try:
             user = self.user
-            os.mkdir(self.user.new_dir(user))
-	    #os.mkdir(os.path.join(destination))     
-	# Attn: See lines 27 & 28 for reference to this
-	    #print("Directory",os.path.join(sub_folder) , "created.")
+            os.mkdir(self.user(user))
             print("Directory ", self.user.new_dir, " created.")
         except FileExistsError:
             print("Directory ", self.user.new_dir, " already exists.")
@@ -166,7 +165,7 @@ def CF(text):
         return text
 
 # Doubled the indent
-def banner(sm_version):
+def banner(s_version):
 	    print(CF(Fore.CYAN))
 	    print(CF(r" _                                                                                                  "))
 	    print(CF(r"| |                    ___________              _______                         __      __          "))
@@ -233,5 +232,5 @@ if __name__ == "__main__":
         print_info("Time: %s" % (Fore.CYAN + str(float(Args.timeout)) + Fore.MAGENTA + " seconds"))
 
         # Run it
-        sm = Instagram_Downloader(user)
-        sm.run()
+        s = Instagram_Downloader(user)
+        s.run()
