@@ -1,6 +1,33 @@
 #!/usr/bin/env python3
 
-# Too many imports? Which ones aren't needed?   ¯\_(ツ)_/¯
+"""
+
+SYNOPSIS
+========
+
+A command line tool to scrape Instagram user profiles. 
+It Creates a new directory for the user, then downloads all photos and videos into the aformentioned directory. 
+The goal is that by using argparse, this will eliminate the user's need to manually change the Instagram uname in the script.
+However, some bugs still need to be worked out.
+
+::
+   python3 ig_downloader_new.py -u username
+
+
+ ATTENTION Updates & Changes:
+ ============================
+
+ True, line length in Python should be limited to 79 characters; however, this script is less buggy as is.
+ 1. All instances of username have been changed to user.
+ 2. Spaces have been inserted between all vars and their values. For example: name = property(get_user).
+ 3. Eliminated spaces between plus '+' and it's neighboring characters. (script runs better that way).
+
+ Collaboration and suggestions always welcomed.
+
+ """
+
+# too many imports.  
+# some redundancies.
 import os
 import os.path
 import re
@@ -21,34 +48,20 @@ from instagram_downloader import user
 from lib.colorama import Fore, Style
 
 # Doesn't run unless I provide the same URL twice as two similar but different variables.. 
-#  ¯\_(ツ)_/¯
+#   ¯\_(ツ)_/¯
 host = "https://instagram.com"
 shost = "https://instagram.com"
 
-# Experimenting with creating the user directory
-# destination = "/temp"
-# sub_folder = "test"
-# -------------------------------------------------------------------------------------------------------- #
-# Running better now, but not 100%
-# ATTENTION! Updates & Changes:
-# I know that line length in Python should be limited to 79 characters. But this script is less buggy as is.
-# 1. Renamed all instances of username to user
-# 2. Inserted a space between all vars and their values, example name = property(get_user)
-# 3. Eliminated spaces between plus '+' and it's neighboring characters. (script runs better that way)
-# Question: Any modifications needed to the class or any of it's current attributes ??
-
+# Class attribute specs need work
 class Instagram_Downloader:
+	"""Instantiate an Instagram User"""
     def __init__(self, shost, user=""):
         self.user = user
 	self.shost = shost
         self.user_id = ""
-        self.jasondata = ""
-        self.apilabel = "graphql"
-        self.hash_timeline = ""
-
 
     # Main function:
-    # What to use?? arguments to pass etc..
+    # arguments to pass etc..
     def run(self):
         pass
 
@@ -58,7 +71,7 @@ class Instagram_Downloader:
 
     # Problem: This is creating an empty/nameless directory ' '
     # needs to create a user directory based on the function above
-    def create_download_directory(self):
+    def create_download_directory(self) -> string:
         try:
             user = self.user
             os.mkdir(self.user(user))
@@ -165,7 +178,7 @@ def CF(text):
         return text
 
 # Doubled the indent
-def banner(s_version):
+def banner(s_version) -> string:
 	    print(CF(Fore.CYAN))
 	    print(CF(r" _                                                                                                  "))
 	    print(CF(r"| |                    ___________              _______                         __      __          "))
@@ -194,7 +207,7 @@ def banner(s_version):
 	    print(CF(Style.RESET_ALL))
 
 # Update: Commented out all references to 'file_handle', it was in regards to an old config file
-def print_info(msg): # file_handle = None
+def print_info(msg) -> string: # file_handle = None
         ansi_escape = re.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]')
         msg = Style.BRIGHT + Fore.MAGENTA + \
         "[%s] %s" % (Fore.CYAN + '+' + Fore.MAGENTA, msg) + Style.RESET_ALL
@@ -203,7 +216,7 @@ def print_info(msg): # file_handle = None
         #if file_handle is not None:
                 #file_handle.write(plaintext + "\n")
 
-# Doubled/increased indent
+# Doubled/increased indent. Works that way.
 if __name__ == "__main__":
         global NOCOLOR
         if sys.version_info < (3, 0):
