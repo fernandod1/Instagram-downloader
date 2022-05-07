@@ -203,7 +203,7 @@ def banner(s_version) -> str:
 	    print(CF(r"|________/   \_______/  \ ____/   \____/  |_|    \_______________/  /_/         \______________________________/       \_\   "))
 	    print(CF(r"                                                                                                                             "))
 	    print(CF(r""))
-	    print(CF(r"     LinuxUser255                                                                     %s" % (sm_version)))
+	    print(CF(r"     LinuxUser255                                                                     %s" % (version)))
 	    print(CF(Style.RESET_ALL))
 
 # Update: Commented out all references to 'file_handle', it was in regards to an old config file
