@@ -66,12 +66,12 @@ class Instagram_Downloader:
         pass
 
     # Add the user via the arg parser
-    def get_user(self, user):
+    def get_user(self, user) -> str:
         return self.user
 
     # Problem: This is creating an empty/nameless directory ' '
     # needs to create a user directory based on the function above
-    def create_download_directory(self) -> string:
+    def create_download_directory(self) -> str:
         try:
             user = self.user
             os.mkdir(self.user(user))
@@ -178,7 +178,7 @@ def CF(text):
         return text
 
 # Doubled the indent
-def banner(s_version) -> string:
+def banner(s_version) -> str:
 	    print(CF(Fore.CYAN))
 	    print(CF(r" _                                                                                                  "))
 	    print(CF(r"| |                    ___________              _______                         __      __          "))
