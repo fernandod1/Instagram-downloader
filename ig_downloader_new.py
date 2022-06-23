@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Instagram Downloader
+
+# Instagram Downloader Scripts
 # by Chris Bingham. Forked from Fernando fernandod1 https://github.com/fernandod1
 # License: GNU GPLv3
 """
