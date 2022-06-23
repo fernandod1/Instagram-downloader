@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# License: GNU GPLv3
 """
 
 SYNOPSIS
